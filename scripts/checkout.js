@@ -1,6 +1,13 @@
 import {cart, removeFromCart} from "../data/cart.js";
 import {products} from "../data/products.js";
 import {formatCurrency} from "./utils/money.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
+const today = dayjs();
+const sevenDayDelivery = today.add(7, 'days');
+const threeDayDelivery = today.add(3, 'days');
+const nextDayDelivery = today.add(1, 'days');
+
 
 let cartSummaryHTML = '';
 
@@ -52,7 +59,7 @@ cart.forEach((cartItem) => {
                         name="delivery-option-${matchingProduct.id}">
                         <div>
                         <div class="delivery-option-date">
-                            Tuesday, June 21
+                            ${sevenDayDelivery.format('dddd, MMMM D')}
                         </div>
                         <div class="delivery-option-price">
                             FREE Shipping
@@ -64,7 +71,7 @@ cart.forEach((cartItem) => {
                         name="delivery-option-${matchingProduct.id}">
                         <div>
                         <div class="delivery-option-date">
-                            Wednesday, June 15
+                            ${threeDayDelivery.format('dddd, MMMM D')}
                         </div>
                         <div class="delivery-option-price">
                             $4.99 - Shipping
@@ -76,7 +83,7 @@ cart.forEach((cartItem) => {
                         name="delivery-option-${matchingProduct.id}">
                         <div>
                         <div class="delivery-option-date">
-                            Monday, June 13
+                            ${nextDayDelivery.format('dddd, MMMM D')}
                         </div>
                         <div class="delivery-option-price">
                             $9.99 - Shipping
